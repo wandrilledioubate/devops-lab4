@@ -38,6 +38,6 @@ jobs:
       - name: Merge dev into main
         uses: devmasx/merge-branch@master
         with:
-          source_branch: dev
-          destination_branch: main
+          from_branch: dev
+          target_branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
