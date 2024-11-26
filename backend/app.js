@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const mongoURI = process.env.MONGO_URL || "YOUR_MONGO_DB_CONNECTION_STRING";
+const mongoURI = process.env.MONGO_URL || "mongodb+srv://wandrille:wandrillepw@devops-lab.sohwk.mongodb.net/";
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
