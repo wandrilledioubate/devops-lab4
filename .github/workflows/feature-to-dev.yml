@@ -1,0 +1,43 @@
+name: CI - Feature to Dev
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm install
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Run backend tests
+        working-directory: ./backend
+        run: npm test
+
+      - name: Run frontend tests
+        working-directory: ./frontend
+        run: npm test
+
+      - name: Merge dev into main
+        uses: devmasx/merge-branch@v1.6.0
+        with:
+          source_branch: dev
+          destination_branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
