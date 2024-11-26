@@ -41,4 +41,4 @@ jobs:
           from_branch: dev
           target_branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          type: pull
+          type: now
