@@ -39,9 +39,15 @@ jobs:
         working-directory: ./e2e-tests
         run: npm install
 
-      - name: Run e2e tests
+      - name: Run E2E tests
         working-directory: ./e2e-tests
-        run: npm test
+        env:
+          NODE_ENV: test
+        run: |
+          npx selenium-standalone install
+          npx selenium-standalone start & # Lancer Selenium en arrière-plan
+          sleep 5 # Donner du temps pour démarrer
+          npm test # Lancer les tests E2E
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
