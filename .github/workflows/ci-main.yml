@@ -40,6 +40,7 @@ jobs:
         run: npm install
 
       - name: Start Application with Docker Compose
+        working-directory: ./
         run: |
           docker compose up -d
           echo "Waiting for application to start..."
