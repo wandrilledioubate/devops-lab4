@@ -39,6 +39,16 @@ jobs:
         working-directory: ./e2e-tests
         run: npm install
 
+      - name: Start Application with Docker Compose
+        run: |
+          docker compose up -d
+          echo "Waiting for application to start..."
+          sleep 30
+
+      - name: Check if application is running
+        run: |
+          curl -v http://localhost:3000 || exit 1
+
       - name: Run E2E tests
         working-directory: ./e2e-tests
         env:
